@@ -1,0 +1,13 @@
+platform :ios, '12.0'
+
+target 'BanjoSquare' do
+  use_frameworks!
+
+  # Pods for BanjoSquare
+  pod 'BanjoLocation', :path => '../'
+
+  target 'BanjoSquareTests' do
+    inherit! :search_paths
+  end
+
+end

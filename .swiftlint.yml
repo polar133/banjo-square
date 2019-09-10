@@ -1,0 +1,126 @@
+opt_in_rules:
+  - cyclomatic_complexity
+  - empty_string
+  - empty_count
+  - function_body_whitespace_comment_lines
+  - yoda_condition
+  - fallthrough
+  - empty_xctest_method
+  - convenience_type
+  - identical_operands
+  - conditional_returns_on_newline
+  - unused_private_declaration
+  - unused_import
+  - unowned_variable_capture
+  - unneeded_parentheses_in_closure_argument
+  - implicitly_unwrapped_optional
+  - private_outlet
+  - first_where
+  - closure_spacing
+  - colon
+  - empty_enum_arguments
+  - fatal_error_message
+  - force_cast
+  - force_try
+  - force_unwrapping
+  - legacy_cggeometry_functions
+  - legacy_constant
+  - legacy_constructor
+  - legacy_nsgeometry_functions
+  - operator_usage_whitespace
+  - redundant_string_enum_value
+  - redundant_void_return
+  - return_arrow_whitespace
+  - trailing_newline
+  - type_name
+  - unused_closure_parameter
+  - unused_optional_binding
+  - vertical_whitespace
+  - void_return
+  - custom_rules
+
+
+disabled_rules: 
+  - function_parameter_count
+
+excluded:
+  - Carthage
+  - Pods
+  - Example/Pods
+  - Example/Tests
+
+colon:
+  apply_to_dictionaries: false
+
+line_length:
+- 300   # warning
+- 500   # error
+
+type_body_length:
+- 200   # warning
+- 400   # error
+
+file_length:
+- 400   # warning
+- 500  # error
+
+function_body_length:
+- 100   # warning
+- 200   # error
+
+cyclomatic_complexity:
+  - 10 #warning
+
+indentation: 2
+
+warning_threshold: 30
+
+identifier_name:
+  min_length:
+    warning: 0
+    error: 0
+  excluded:
+    - id
+    - pk
+    - to
+    - url
+    - URL
+
+custom_rules:
+  des_encriptation:
+    included: ".*.swift"
+    name: "DES nor DESede should be used"
+    regex: '[a,A]lgorithm.*des'
+    message: "Neither DES (Data Encryption Standard) nor DESede (3DES) should be used"
+    severity: error
+  hardcoded_credential:
+    included: ".*.swift"
+    name: "Credentials should not be hard-coded"
+    regex: 'let \s*(?:token|password|Token|Password|RUT|rut|DNI|dni)\s*= ".+"'
+    message: "Because it is easy to extract strings from a compiled application, credentials should never be hard-coded."
+  empty_line_after_guard:
+    included: ".*.swift"
+    name: "Empty Line After Guard"
+    regex: "(^ *guard[ a-zA-Z0-9=?.\\(\\),><!]*\\{[ a-zA-Z0-9=?.\\(\\),><!]*\\}\n *(?!(?:return|guard))\\S+)"
+    message: "There should be an empty line after a guard"
+    severity: warning
+  if_as_guard:
+    included: ".*.swift"
+    name: "If as Guard"
+    regex: '\n *if [^\{]+\{\s*(?:return|break|continue)[^\n]*\n *\}(?! *else)'
+    message: "Don't use an if statement to just return/break/continue – use guard for such cases instead."
+    severity: warning
+  unnecessary_nil_assignment:
+    included: ".*.swift"
+    name: "Unnecessary Nil Assignment"
+    regex: 'var \S+\s*:\s*[^\s]+\?\s*=\s*nil'
+    message: "Don't assign nil as a value when defining an optional type – it's nil by default."
+    severity: warning
+  useless_if:
+    included: ".*.swift"
+    name: "Useless If"
+    regex: 'if[ (]*?(:?true|false)[ )]*?\{'
+    message: "`if` statements with conditions that are always false have the effect of making blocks of code non-functional."
+    severity: warning
+
+

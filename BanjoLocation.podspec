@@ -27,8 +27,29 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'git@github.com:polar133/banjo-square.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/carlos_polar'
 
+  s.static_framework = true # <- Google Maps
+  s.swift_version = '5.0'
   s.ios.deployment_target = '12.0'
 
-  s.source_files = 'BanjoLocation/Classes/**/*'
+  s.subspec 'Core' do |sp|
+    sp.source_files = 'BanjoLocation/Classes/Core/**/*.{swift}'
+    sp.resources =  'BanjoLocation/Assets/Core/**/*.{strings,xib,xcassets,json,ttf,plist,imageset,png}'
+  end
+
+  s.subspec 'Location' do |sp|
+    sp.dependency 'BanjoLocation/Core'
+    sp.source_files = 'BanjoLocation/Classes/Location/**/*.{swift}'
+    sp.resources =    'BanjoLocation/Assets/Location/**/*.{strings,xib,xcassets,json,ttf,plist,imageset,png}'
+    sp.test_spec 'Location-UnitTests' do |test_spec|
+      test_spec.source_files = [
+        'BanjoLocation/Tests/LocationTests/**/*.swift'
+      ]
+    end
+
+    #External dependencies
+    sp.dependency 'GoogleMaps', '>= 3.4.0'
+    sp.dependency 'GooglePlaces', '>= 3.4.0'
+  end
+
 
 end

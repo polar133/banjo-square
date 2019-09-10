@@ -154,6 +154,7 @@
 				96D5AEC023285F10003B5314 /* Frameworks */,
 				96D5AEC123285F10003B5314 /* Resources */,
 				96D5AEE623286140003B5314 /* Swiftlint */,
+				D627459FDB1BB32163D6E6DF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,6 +303,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		D627459FDB1BB32163D6E6DF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

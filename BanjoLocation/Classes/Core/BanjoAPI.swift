@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum BanjoAPI {
+    static let baseURL = "https://api.foursquare.com/v2"
+}

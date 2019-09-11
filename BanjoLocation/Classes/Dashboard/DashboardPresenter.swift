@@ -16,10 +16,14 @@ protocol DashboardPresentationLogic {
 }
 
 protocol DashboardPresentationModelLogic: class {
+    func updateVenues()
 }
 
 class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModelLogic, DashboardParametersLogic {
 
 	weak var view: DashboardDisplayLogic?
 	var model: (DashboardModelLogic & DashboardDataStore)?
+
+    func updateVenues() {
+    }
 }

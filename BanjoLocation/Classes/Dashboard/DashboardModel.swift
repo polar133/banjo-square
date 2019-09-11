@@ -9,14 +9,19 @@
 import UIKit
 
 protocol DashboardModelLogic {
+    func getVenues(lat: Double, lng: Double, radius: Int, section: String?)
 }
 
 protocol DashboardDataStore {
-	//var name: String { get set }
 }
 
 class DashboardModel: DashboardModelLogic, DashboardDataStore {
 	var service: DashboardServiceLogic?
 	weak var presenter: DashboardPresentationModelLogic?
-	//var name: String = ""
+    var venues: Set<Venue> = []
+
+    func getVenues(lat: Double, lng: Double, radius: Int, section: String?) {
+
+    }
+
 }

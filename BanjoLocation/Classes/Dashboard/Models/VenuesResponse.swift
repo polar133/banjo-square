@@ -43,6 +43,8 @@ struct Location: Decodable, Hashable {
     let lng: Double
     let distance: Int?
 
+
+
     static func == (lhs: Location, rhs: Location) -> Bool {
         return lhs.address == rhs.address &&
             lhs.lat == rhs.lat &&
@@ -55,6 +57,10 @@ struct Category: Decodable, Hashable {
     let id: String
     let shortName: String
     let icon: Icon
+
+    func getIconURL() -> String {
+        return "\(icon.prefix)\(icon.suffix)"
+    }
 
     static func == (lhs: Category, rhs: Category) -> Bool {
         return lhs.id == rhs.id &&

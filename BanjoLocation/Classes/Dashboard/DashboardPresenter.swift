@@ -16,6 +16,8 @@ public protocol DashboardParametersLogic {
 protocol DashboardPresentationLogic {
     func setFilterFor(position: Coordinates, radius: Int, section: String?)
     func updateLocation(position: Coordinates)
+    func getAmountOfVenues() -> Int
+    func getViewModelFor(index: Int) -> VenueViewModel?
 }
 
 protocol DashboardPresentationModelLogic: class {
@@ -55,11 +57,25 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
     }
 
     func updateVenues() {
-
+        self.view?.updateView()
     }
 
     func presentError() {
 
+    }
+
+    func getViewModelFor(index: Int) -> VenueViewModel? {
+        let elements = Array(self.model?.venuesAvailables() ?? [])
+        guard elements.count > index else {
+            return nil
+        }
+        let venue = elements[index]
+        let viewModel = VenueViewModel(title: venue.name, location: venue.location.address ?? "", firstCategory: nil, secondCategory: nil)
+        return viewModel
+    }
+
+    func getAmountOfVenues() -> Int {
+        return self.model?.venuesAvailables().count ?? 0
     }
 
     private func isAwayOfRadius(oldPosition: Coordinates, newPosition: Coordinates) -> Bool {

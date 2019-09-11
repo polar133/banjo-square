@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 protocol DashboardDisplayLogic: class {
-
+    func updateView()
 }
 
 public class DashboardViewController: UIViewController, DashboardDisplayLogic {
@@ -39,7 +39,18 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 
 	override public func viewDidLoad() {
 		super.viewDidLoad()
+        configureCollection()
 	}
+
+    func configureCollection() {
+        self.collectionView.register(UINib(nibName: VenueCell.nibName, bundle: Bundle(for: DashboardViewController.self)), forCellWithReuseIdentifier: VenueCell.reuseIdentifier)
+    }
+
+    func updateView() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
 
     @IBAction func getLocation(_ sender: Any) {
         let status = CLLocationManager.authorizationStatus()
@@ -58,7 +69,8 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
             return
         case .authorizedAlways, .authorizedWhenInUse:
             break
-
+        @unknown default:
+            return
         }
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -73,18 +85,30 @@ extension DashboardViewController: CLLocationManagerDelegate {
         }
     }
 
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.bounds.width * 5) / 6, height: 160)
+    }
+
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        debugPrint(error)
     }
 }
 
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.presenter?.getAmountOfVenues() ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VenueCell.reuseIdentifier, for: indexPath) as? VenueCell,
+            let viewModel = self.presenter?.getViewModelFor(index: indexPath.row)
+            else {
+                return UICollectionViewCell()
+        }
+
+        cell.setupInformation(viewModel: viewModel)
+        return cell
     }
 
 }

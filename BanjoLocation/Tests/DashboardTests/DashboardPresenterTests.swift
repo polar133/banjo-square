@@ -138,6 +138,12 @@ class DashboardPresenterTests: XCTestCase {
 }
 
 class DashboardViewControllerSpy: DashboardDisplayLogic {
+    var updateViewCalled = false
+    
+    func updateView() {
+        updateViewCalled = true
+    }
+
 
 }
 

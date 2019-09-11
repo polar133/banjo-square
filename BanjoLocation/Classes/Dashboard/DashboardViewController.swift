@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 protocol DashboardDisplayLogic: class {
     func updateView()
@@ -17,9 +18,12 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 	var presenter: DashboardPresentationLogic?
 	public var params: DashboardParametersLogic?
     let locationManager = CLLocationManager()
+
     @IBOutlet private weak var filterButton: UIButton!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var locationStackView: UIStackView!
 
 	// MARK: Object lifecycle
 	init() {
@@ -40,6 +44,8 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 	override public func viewDidLoad() {
 		super.viewDidLoad()
         configureCollection()
+        let button = MKUserTrackingButton(mapView: self.mapView)
+        locationStackView.addArrangedSubview(button)
 	}
 
     func configureCollection() {
@@ -74,6 +80,8 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         }
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .followWithHeading
     }
 }
 

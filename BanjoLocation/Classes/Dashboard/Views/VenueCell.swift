@@ -41,8 +41,8 @@ class VenueCell: UICollectionViewCell {
     }
 
     func setupInformation(viewModel: VenueViewModel) {
-        self.titleLabel.text = viewModel.title
-        self.locationLabel.text = viewModel.location
+        self.titleLabel.text = viewModel.title.capitalized
+        self.locationLabel.text = viewModel.location.capitalized
 
         if let category = viewModel.firstCategory {
             firstCatView.isHidden = false

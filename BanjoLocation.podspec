@@ -45,9 +45,17 @@ Pod::Spec.new do |s|
       test_spec.resources = 'BanjoLocation/Tests/DashboardTests/Resources/*.{strings,json}'
       test_spec.source_files = 'BanjoLocation/Tests/DashboardTests/**/*.{swift}'
     end
-
-    #External dependencies
   end
 
+  s.subspec 'VenueDetail' do |sp|
+    sp.dependency 'BanjoLocation/Core'
+    sp.source_files = 'BanjoLocation/Classes/VenueDetail/**/*.{swift}'
+    sp.resources =    'BanjoLocation/Assets/VenueDetail/**/*.{strings,xib,xcassets,json,ttf,plist,imageset,png}'
+    sp.test_spec 'VenueDetail-UnitTests' do |test_spec|
+      test_spec.dependency 'OHHTTPStubs/Swift','>= 6.1.0'
+      test_spec.resources = 'BanjoLocation/Tests/VenueDetailTests/Resources/*.{strings,json}'
+      test_spec.source_files = 'BanjoLocation/Tests/VenueDetailTests/**/*.{swift}'
+    end
+  end
 
 end

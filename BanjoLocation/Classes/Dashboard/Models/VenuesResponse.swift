@@ -43,8 +43,6 @@ struct Location: Decodable, Hashable {
     let lng: Double
     let distance: Int?
 
-
-
     static func == (lhs: Location, rhs: Location) -> Bool {
         return lhs.address == rhs.address &&
             lhs.lat == rhs.lat &&

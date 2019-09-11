@@ -6,7 +6,7 @@ install! 'cocoapods', :disable_input_output_paths => true
 target 'BanjoSquare' do
 
   # Pods for BanjoSquare
-  pod 'BanjoLocation/Dashboard', :path => '../', :testspecs => ['Dashboard-UnitTests']
+  pod 'BanjoLocation', :path => '../', :testspecs => ['Dashboard/Dashboard-UnitTests', 'VenueDetail/VenueDetail-UnitTests']
 
   target 'BanjoSquareTests' do
     inherit! :search_paths

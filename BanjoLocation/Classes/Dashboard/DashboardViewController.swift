@@ -107,6 +107,11 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         return self.presenter?.getAmountOfVenues() ?? 0
     }
 
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = VenueDetailFactory().getVenueDetailViewController()
+        self.present(vc, animated: true, completion: nil)
+    }
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VenueCell.reuseIdentifier, for: indexPath) as? VenueCell,

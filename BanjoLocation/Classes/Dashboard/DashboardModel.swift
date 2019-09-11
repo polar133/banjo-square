@@ -21,7 +21,16 @@ class DashboardModel: DashboardModelLogic, DashboardDataStore {
     var venues: Set<Venue> = []
 
     func getVenues(lat: Double, lng: Double, radius: Int, section: String?) {
-
+        let position = "\(lat),\(lng)"
+        service?.fetchLocations(position: position, radius: "\(radius)", section: section, callback: { [weak self] response in
+            guard let venuesResponse = response else {
+                self?.presenter?.presentError()
+                return
+            }
+            let venuesList = venuesResponse.response.groups.compactMap { $0.items.compactMap { $0.venue } }.reduce([], +)
+            self?.venues = Set(venuesList)
+            self?.presenter?.updateVenues()
+        })
     }
 
 }

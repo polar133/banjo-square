@@ -17,6 +17,7 @@ protocol DashboardPresentationLogic {
 
 protocol DashboardPresentationModelLogic: class {
     func updateVenues()
+    func presentError()
 }
 
 class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModelLogic, DashboardParametersLogic {
@@ -25,5 +26,9 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
 	var model: (DashboardModelLogic & DashboardDataStore)?
 
     func updateVenues() {
+    }
+
+    func presentError() {
+        
     }
 }

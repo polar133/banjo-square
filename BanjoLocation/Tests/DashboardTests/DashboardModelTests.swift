@@ -41,10 +41,16 @@ class DashboardModelTests: XCTestCase {
 }
 
 class DashboardPresenterSpy: DashboardPresentationModelLogic {
+
     var updateVenuesCalled = false
+    var presentErrorCalled = false
 
     func updateVenues() {
         updateVenuesCalled = true
+    }
+
+    func presentError() {
+        presentErrorCalled = true
     }
 }
 

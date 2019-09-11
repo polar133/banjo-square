@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		687BBA46D152BD93AAEB7D7A /* Pods_BanjoSquareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AFC42E75EDB6C6A1A457440 /* Pods_BanjoSquareTests.framework */; };
+		7AFBB72B1B0EFA5D969BD35C /* Pods_BanjoSquareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 534403779D6FCF8285D73321 /* Pods_BanjoSquareTests.framework */; };
+		8621EAE0BE8DC5B040B1C988 /* Pods_BanjoSquare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE419824181659F2A3C5BE3 /* Pods_BanjoSquare.framework */; };
 		96D5AEC723285F10003B5314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D5AEC623285F10003B5314 /* AppDelegate.swift */; };
 		96D5AEC923285F10003B5314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D5AEC823285F10003B5314 /* ViewController.swift */; };
 		96D5AECE23285F11003B5314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96D5AECD23285F11003B5314 /* Assets.xcassets */; };
 		96D5AED123285F11003B5314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D5AECF23285F11003B5314 /* LaunchScreen.storyboard */; };
 		96D5AEDC23285F12003B5314 /* BanjoSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D5AEDB23285F12003B5314 /* BanjoSquareTests.swift */; };
-		D0C408F96DCF938AA778A6D8 /* Pods_BanjoSquare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77F12A58AEBA470F42986D35 /* Pods_BanjoSquare.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,11 +27,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3CF5467E4611E73CDDB8FB5D /* Pods-BanjoSquareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquareTests.release.xcconfig"; path = "Target Support Files/Pods-BanjoSquareTests/Pods-BanjoSquareTests.release.xcconfig"; sourceTree = "<group>"; };
-		4254EC9617A89002DD41177E /* Pods-BanjoSquare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquare.release.xcconfig"; path = "Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare.release.xcconfig"; sourceTree = "<group>"; };
-		77F12A58AEBA470F42986D35 /* Pods_BanjoSquare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanjoSquare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AFC42E75EDB6C6A1A457440 /* Pods_BanjoSquareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanjoSquareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		83CDB1A3431746CB01B2DF37 /* Pods-BanjoSquare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquare.debug.xcconfig"; path = "Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare.debug.xcconfig"; sourceTree = "<group>"; };
+		15B6FEC572461F3D92CAC5D4 /* Pods-BanjoSquare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquare.debug.xcconfig"; path = "Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare.debug.xcconfig"; sourceTree = "<group>"; };
+		5052C45B0174058DB57F964D /* Pods-BanjoSquare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquare.release.xcconfig"; path = "Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare.release.xcconfig"; sourceTree = "<group>"; };
+		534403779D6FCF8285D73321 /* Pods_BanjoSquareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanjoSquareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AE419824181659F2A3C5BE3 /* Pods_BanjoSquare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanjoSquare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D5AEC323285F10003B5314 /* BanjoSquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanjoSquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D5AEC623285F10003B5314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D5AEC823285F10003B5314 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +40,8 @@
 		96D5AED723285F12003B5314 /* BanjoSquareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BanjoSquareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D5AEDB23285F12003B5314 /* BanjoSquareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanjoSquareTests.swift; sourceTree = "<group>"; };
 		96D5AEDD23285F12003B5314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D203D6456A94452A269200C8 /* Pods-BanjoSquareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquareTests.debug.xcconfig"; path = "Target Support Files/Pods-BanjoSquareTests/Pods-BanjoSquareTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EB1B2B3B21916CC31B6BB85E /* Pods-BanjoSquareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquareTests.debug.xcconfig"; path = "Target Support Files/Pods-BanjoSquareTests/Pods-BanjoSquareTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F6BAB4967F8A72EAA0B01ED2 /* Pods-BanjoSquareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquareTests.release.xcconfig"; path = "Target Support Files/Pods-BanjoSquareTests/Pods-BanjoSquareTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0C408F96DCF938AA778A6D8 /* Pods_BanjoSquare.framework in Frameworks */,
+				8621EAE0BE8DC5B040B1C988 /* Pods_BanjoSquare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,30 +57,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				687BBA46D152BD93AAEB7D7A /* Pods_BanjoSquareTests.framework in Frameworks */,
+				7AFBB72B1B0EFA5D969BD35C /* Pods_BanjoSquareTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		95DAEDF40C94D2C7448DF2EA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				77F12A58AEBA470F42986D35 /* Pods_BanjoSquare.framework */,
-				7AFC42E75EDB6C6A1A457440 /* Pods_BanjoSquareTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		96D5AEBA23285F10003B5314 = {
 			isa = PBXGroup;
 			children = (
 				96D5AEC523285F10003B5314 /* BanjoSquare */,
 				96D5AEDA23285F12003B5314 /* BanjoSquareTests */,
 				96D5AEC423285F10003B5314 /* Products */,
-				A03ED5DD9FDC6459B7A4949E /* Pods */,
-				95DAEDF40C94D2C7448DF2EA /* Frameworks */,
+				F74F623013C8C65A002D52E6 /* Pods */,
+				EC5C76400F0F3F5DAB907094 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,13 +121,22 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
-		A03ED5DD9FDC6459B7A4949E /* Pods */ = {
+		EC5C76400F0F3F5DAB907094 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83CDB1A3431746CB01B2DF37 /* Pods-BanjoSquare.debug.xcconfig */,
-				4254EC9617A89002DD41177E /* Pods-BanjoSquare.release.xcconfig */,
-				D203D6456A94452A269200C8 /* Pods-BanjoSquareTests.debug.xcconfig */,
-				3CF5467E4611E73CDDB8FB5D /* Pods-BanjoSquareTests.release.xcconfig */,
+				7AE419824181659F2A3C5BE3 /* Pods_BanjoSquare.framework */,
+				534403779D6FCF8285D73321 /* Pods_BanjoSquareTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F74F623013C8C65A002D52E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15B6FEC572461F3D92CAC5D4 /* Pods-BanjoSquare.debug.xcconfig */,
+				5052C45B0174058DB57F964D /* Pods-BanjoSquare.release.xcconfig */,
+				EB1B2B3B21916CC31B6BB85E /* Pods-BanjoSquareTests.debug.xcconfig */,
+				F6BAB4967F8A72EAA0B01ED2 /* Pods-BanjoSquareTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -149,12 +149,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96D5AEE023285F12003B5314 /* Build configuration list for PBXNativeTarget "BanjoSquare" */;
 			buildPhases = (
-				29CA6035A253A479DCEDCB71 /* [CP] Check Pods Manifest.lock */,
+				A4CEC88EA1F51F3DE9B8CCAD /* [CP] Check Pods Manifest.lock */,
 				96D5AEBF23285F10003B5314 /* Sources */,
 				96D5AEC023285F10003B5314 /* Frameworks */,
 				96D5AEC123285F10003B5314 /* Resources */,
 				96D5AEE623286140003B5314 /* Swiftlint */,
-				D627459FDB1BB32163D6E6DF /* [CP] Copy Pods Resources */,
+				1C79C7F8E760BC6562734865 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,7 +169,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96D5AEE323285F12003B5314 /* Build configuration list for PBXNativeTarget "BanjoSquareTests" */;
 			buildPhases = (
-				732DA8F38F39A959FE10CA66 /* [CP] Check Pods Manifest.lock */,
+				41940A22C8F00571F5C98BC5 /* [CP] Check Pods Manifest.lock */,
 				96D5AED323285F12003B5314 /* Sources */,
 				96D5AED423285F12003B5314 /* Frameworks */,
 				96D5AED523285F12003B5314 /* Resources */,
@@ -242,29 +242,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		29CA6035A253A479DCEDCB71 /* [CP] Check Pods Manifest.lock */ = {
+		1C79C7F8E760BC6562734865 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BanjoSquare-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		732DA8F38F39A959FE10CA66 /* [CP] Check Pods Manifest.lock */ = {
+		41940A22C8F00571F5C98BC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,21 +297,26 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		D627459FDB1BB32163D6E6DF /* [CP] Copy Pods Resources */ = {
+		A4CEC88EA1F51F3DE9B8CCAD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BanjoSquare-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -481,7 +479,7 @@
 		};
 		96D5AEE123285F12003B5314 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83CDB1A3431746CB01B2DF37 /* Pods-BanjoSquare.debug.xcconfig */;
+			baseConfigurationReference = 15B6FEC572461F3D92CAC5D4 /* Pods-BanjoSquare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -500,7 +498,7 @@
 		};
 		96D5AEE223285F12003B5314 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4254EC9617A89002DD41177E /* Pods-BanjoSquare.release.xcconfig */;
+			baseConfigurationReference = 5052C45B0174058DB57F964D /* Pods-BanjoSquare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -519,7 +517,7 @@
 		};
 		96D5AEE423285F12003B5314 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D203D6456A94452A269200C8 /* Pods-BanjoSquareTests.debug.xcconfig */;
+			baseConfigurationReference = EB1B2B3B21916CC31B6BB85E /* Pods-BanjoSquareTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -540,7 +538,7 @@
 		};
 		96D5AEE523285F12003B5314 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CF5467E4611E73CDDB8FB5D /* Pods-BanjoSquareTests.release.xcconfig */;
+			baseConfigurationReference = F6BAB4967F8A72EAA0B01ED2 /* Pods-BanjoSquareTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

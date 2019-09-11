@@ -17,8 +17,8 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 
 	// MARK: Object lifecycle
 	init() {
-		super.init(nibName: String(describing: DashboardViewController.self), 
-			bundle: Bundle(for: DashboardViewController.classForCoder()))
+        super.init(nibName: String(describing: DashboardViewController.self),
+                   bundle: Bundle(for: DashboardViewController.classForCoder()))
 	}
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

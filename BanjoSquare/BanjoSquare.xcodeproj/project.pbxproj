@@ -13,6 +13,7 @@
 		96D5AECE23285F11003B5314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96D5AECD23285F11003B5314 /* Assets.xcassets */; };
 		96D5AED123285F11003B5314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D5AECF23285F11003B5314 /* LaunchScreen.storyboard */; };
 		96D5AEDC23285F12003B5314 /* BanjoSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D5AEDB23285F12003B5314 /* BanjoSquareTests.swift */; };
+		96D5AF1023294DFE003B5314 /* tokens.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96D5AF0F23294DFE003B5314 /* tokens.plist */; };
 		C63AFDDBEC949AD3FFEAFD72 /* Pods_BanjoSquare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0A0E3A1C33FFAF03B54260 /* Pods_BanjoSquare.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		96D5AED723285F12003B5314 /* BanjoSquareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BanjoSquareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D5AEDB23285F12003B5314 /* BanjoSquareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanjoSquareTests.swift; sourceTree = "<group>"; };
 		96D5AEDD23285F12003B5314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96D5AF0F23294DFE003B5314 /* tokens.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = tokens.plist; sourceTree = "<group>"; };
 		A1FAC7665FE37165509ECE7C /* Pods-BanjoSquare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquare.debug.xcconfig"; path = "Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare.debug.xcconfig"; sourceTree = "<group>"; };
 		B0F014B7EB7D3EC28A862C69 /* Pods_BanjoSquareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BanjoSquareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA08DF7C8BB358302D99467 /* Pods-BanjoSquareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BanjoSquareTests.release.xcconfig"; path = "Target Support Files/Pods-BanjoSquareTests/Pods-BanjoSquareTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,7 +74,6 @@
 				724F473C5561FDB7E6E01B2F /* Pods-BanjoSquareTests.debug.xcconfig */,
 				FAA08DF7C8BB358302D99467 /* Pods-BanjoSquareTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -121,6 +122,7 @@
 				96D5AECD23285F11003B5314 /* Assets.xcassets */,
 				96D5AECF23285F11003B5314 /* LaunchScreen.storyboard */,
 				96D5AED223285F11003B5314 /* Info.plist */,
+				96D5AF0F23294DFE003B5314 /* tokens.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -229,6 +231,7 @@
 			files = (
 				96D5AED123285F11003B5314 /* LaunchScreen.storyboard in Resources */,
 				96D5AECE23285F11003B5314 /* Assets.xcassets in Resources */,
+				96D5AF1023294DFE003B5314 /* tokens.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

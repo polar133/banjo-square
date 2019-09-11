@@ -47,8 +47,6 @@ Pod::Spec.new do |s|
     end
 
     #External dependencies
-    sp.dependency 'GoogleMaps', '>= 3.4.0'
-    sp.dependency 'GooglePlaces', '>= 3.4.0'
   end
 
 

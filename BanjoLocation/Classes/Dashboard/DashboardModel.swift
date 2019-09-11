@@ -9,7 +9,8 @@
 import UIKit
 
 protocol DashboardModelLogic {
-    func getVenues(lat: Double, lng: Double, radius: Int, section: String?)
+    func getVenues(lat: Double, lng: Double, radius: Int, section: String?, clearVenues: Bool)
+    func venuesAvailables() -> Set<Venue>
 }
 
 protocol DashboardDataStore {
@@ -20,7 +21,7 @@ class DashboardModel: DashboardModelLogic, DashboardDataStore {
 	weak var presenter: DashboardPresentationModelLogic?
     var venues: Set<Venue> = []
 
-    func getVenues(lat: Double, lng: Double, radius: Int, section: String?) {
+    func getVenues(lat: Double, lng: Double, radius: Int, section: String?, clearVenues: Bool) {
         let position = "\(lat),\(lng)"
         service?.fetchLocations(position: position, radius: "\(radius)", section: section, callback: { [weak self] response in
             guard let venuesResponse = response else {
@@ -28,9 +29,17 @@ class DashboardModel: DashboardModelLogic, DashboardDataStore {
                 return
             }
             let venuesList = venuesResponse.response.groups.compactMap { $0.items.compactMap { $0.venue } }.reduce([], +)
-            self?.venues = Set(venuesList)
+            if clearVenues {
+                self?.venues = Set(venuesList)
+            } else {
+                venuesList.forEach { self?.venues.insert($0) }
+            }
             self?.presenter?.updateVenues()
         })
+    }
+
+    func venuesAvailables() -> Set<Venue> {
+        return self.venues
     }
 
 }

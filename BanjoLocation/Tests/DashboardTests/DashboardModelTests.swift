@@ -30,7 +30,7 @@ class DashboardModelTests: XCTestCase {
         let lng = 12.0
 
         //When
-        model.getVenues(lat: lat, lng: lng, radius: 100, section: nil)
+        model.getVenues(lat: lat, lng: lng, radius: 100, section: nil, clearVenues: false)
 
         //Then
         XCTAssertFalse(model.venues.isEmpty)

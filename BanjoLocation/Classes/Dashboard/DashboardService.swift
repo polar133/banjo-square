@@ -24,8 +24,8 @@ class DashboardService: DashboardServiceLogic {
         let baseURL = "\(BanjoAPI.baseURL)\(DashboardAPI.venues)"
 
         let params = [
-            "client_id": "TEST",
-            "client_secret": "TEST",
+            "client_id": APITokens.ClientID,
+            "client_secret": APITokens.ClientSecret,
             "v": Date.getCurrentDate(),
             "ll": position,
             "radius": radius,

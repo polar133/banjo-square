@@ -58,4 +58,6 @@ Pod::Spec.new do |s|
     end
   end
 
+  #Dependencies
+  s.dependency 'SDWebImage', '>= 5.0'
 end

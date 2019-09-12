@@ -82,7 +82,16 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
             return nil
         }
         let venue = elements[index]
-        let viewModel = VenueViewModel(title: venue.name, location: venue.location.address ?? "", firstCategory: nil, secondCategory: nil)
+        var viewModel = VenueViewModel(title: venue.name, location: venue.location.address ?? "", firstCategory: nil, secondCategory: nil)
+        if let category = venue.categories.first {
+            let categoryVM = CategoryViewModel(title: category.shortName, url: category.getIconURL())
+            viewModel.firstCategory = categoryVM
+        }
+        if venue.categories.count > 1 {
+            let category = venue.categories[1]
+            let categoryVM = CategoryViewModel(title: category.shortName, url: category.getIconURL())
+            viewModel.secondCategory = categoryVM
+        }
         return viewModel
     }
 

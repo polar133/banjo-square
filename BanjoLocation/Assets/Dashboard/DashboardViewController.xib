@@ -52,10 +52,10 @@
                     </subviews>
                 </stackView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Rtl-oX-Q47">
-                    <rect key="frame" x="0.0" y="509" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="451" width="375" height="200"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="150" id="8fw-oV-nEC"/>
+                        <constraint firstAttribute="height" constant="200" id="8fw-oV-nEC"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="4" id="J2Z-Vg-ZsW">
                         <size key="itemSize" width="50" height="50"/>
@@ -69,7 +69,7 @@
                     </connections>
                 </collectionView>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="lastBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="wTe-bn-vyW">
-                    <rect key="frame" x="339" y="473" width="20" height="20"/>
+                    <rect key="frame" x="339" y="415" width="20" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="0SP-wU-6jO"/>
@@ -87,7 +87,7 @@
                 <constraint firstItem="jB2-9Q-jSS" firstAttribute="trailing" secondItem="Vbb-Bd-O2k" secondAttribute="trailing" constant="16" id="QBa-qA-0y4"/>
                 <constraint firstItem="fLH-Qv-7Ix" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SNi-Oz-X2V"/>
                 <constraint firstAttribute="bottom" secondItem="fLH-Qv-7Ix" secondAttribute="bottom" id="Si4-dg-h3T"/>
-                <constraint firstItem="jB2-9Q-jSS" firstAttribute="bottom" secondItem="Rtl-oX-Q47" secondAttribute="bottom" constant="8" id="Tke-vC-uQQ"/>
+                <constraint firstAttribute="bottom" secondItem="Rtl-oX-Q47" secondAttribute="bottom" constant="16" id="Yiu-IC-vPM"/>
                 <constraint firstItem="Rtl-oX-Q47" firstAttribute="leading" secondItem="jB2-9Q-jSS" secondAttribute="leading" id="fbN-N7-8vM"/>
                 <constraint firstAttribute="trailing" secondItem="fLH-Qv-7Ix" secondAttribute="trailing" id="g9M-dw-edN"/>
                 <constraint firstItem="Vbb-Bd-O2k" firstAttribute="top" secondItem="jB2-9Q-jSS" secondAttribute="top" constant="16" id="p2R-pi-q0X"/>

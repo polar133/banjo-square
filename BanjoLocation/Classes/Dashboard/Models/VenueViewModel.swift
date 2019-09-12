@@ -10,8 +10,8 @@ import Foundation
 struct VenueViewModel {
     let title: String
     let location: String
-    let firstCategory: CategoryViewModel?
-    let secondCategory: CategoryViewModel?
+    var firstCategory: CategoryViewModel?
+    var secondCategory: CategoryViewModel?
 }
 
 struct CategoryViewModel {

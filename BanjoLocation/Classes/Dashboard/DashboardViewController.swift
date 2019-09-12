@@ -12,6 +12,8 @@ import MapKit
 
 protocol DashboardDisplayLogic: class {
     func updateView()
+    func scrollTo(index: Int)
+    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) 
     func navigateTo(viewController: UIViewController)
 }
 
@@ -54,8 +56,8 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     }
 
     func updateView() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        DispatchQueue.main.sync { [weak self] in
+            self?.collectionView.reloadData()
         }
     }
 
@@ -81,8 +83,20 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         }
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .followWithHeading
+    }
+
+    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) {
+        let annotation = MKPointAnnotation()
+        annotation.title = title.capitalized
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        mapView.addAnnotation(annotation)
+    }
+
+    func scrollTo(index: Int) {
+        self.collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
     }
 
     func navigateTo(viewController: UIViewController) {
@@ -90,7 +104,7 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     }
 }
 
-extension DashboardViewController: CLLocationManagerDelegate {
+extension DashboardViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.last {
             self.presenter?.updateLocation(position: (Double(currentLocation.coordinate.latitude),
@@ -104,6 +118,36 @@ extension DashboardViewController: CLLocationManagerDelegate {
 
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         debugPrint(error)
+    }
+    public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else {
+            return nil
+        }
+
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            annotationView?.calloutOffset = CGPoint(x: -5, y: 5)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+
+        return annotationView
+    }
+
+    public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotationTitle = view.annotation?.title {
+            self.presenter?.annotationSelected(title: annotationTitle ?? "")
+        }
+    }
+
+    public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotationTitle = view.annotation?.title {
+            self.presenter?.presentVenueDetail(title: annotationTitle ?? "")
+        }
     }
 }
 

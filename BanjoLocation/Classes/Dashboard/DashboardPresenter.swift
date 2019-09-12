@@ -19,6 +19,8 @@ protocol DashboardPresentationLogic {
     func getAmountOfVenues() -> Int
     func getViewModelFor(index: Int) -> VenueViewModel?
     func presentVenueDetail(index: Int)
+    func presentVenueDetail(title: String)
+    func annotationSelected(title: String) 
 }
 
 protocol DashboardPresentationModelLogic: class {
@@ -59,10 +61,36 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
 
     func updateVenues() {
         self.view?.updateView()
+        for venue in self.model?.venuesAvailables() ?? [] {
+            self.view?.addCustomAnnotation(title: venue.name, venue.location.lat, venue.location.lng)
+        }
     }
 
     func presentError() {
 
+    }
+
+    func annotationSelected(title: String) {
+        let elements = Array(self.model?.venuesAvailables() ?? [])
+        for index in 0..<elements.count {
+            if elements[index].name == title {
+                self.view?.scrollTo(index: index)
+                break
+            }
+        }
+    }
+
+    func presentVenueDetail(title: String) {
+        let elements = Array(self.model?.venuesAvailables() ?? [])
+        for index in 0..<elements.count {
+            if elements[index].name == title {
+                let vc = VenueDetailFactory().getVenueDetailViewController()
+                let venue = elements[index]
+                vc.params?.setVenueParams(id: venue.id, name: venue.name, location: venue.location.address ?? "")
+                self.view?.navigateTo(viewController: vc)
+                break
+            }
+        }
     }
 
     func presentVenueDetail(index: Int) {

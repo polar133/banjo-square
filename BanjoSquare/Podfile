@@ -1,0 +1,15 @@
+platform :ios, '12.0'
+use_frameworks!
+
+install! 'cocoapods', :disable_input_output_paths => true
+
+target 'BanjoSquare' do
+
+  # Pods for BanjoSquare
+  pod 'BanjoLocation', :path => '../', :testspecs => ['Dashboard/Dashboard-UnitTests', 'VenueDetail/VenueDetail-UnitTests']
+
+  target 'BanjoSquareTests' do
+    inherit! :search_paths
+  end
+
+end

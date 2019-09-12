@@ -14,7 +14,6 @@
                 <outlet property="collectionView" destination="Rtl-oX-Q47" id="wfN-ZJ-2g8"/>
                 <outlet property="containerView" destination="fLH-Qv-7Ix" id="Xkp-d7-KTm"/>
                 <outlet property="filterButton" destination="s9R-pk-iSJ" id="MGI-aQ-8vP"/>
-                <outlet property="locationStackView" destination="wTe-bn-vyW" id="dpd-HI-4vO"/>
                 <outlet property="mapView" destination="UXS-ph-rfa" id="K0m-Rq-FLg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -39,19 +38,27 @@
                         <constraint firstItem="UXS-ph-rfa" firstAttribute="leading" secondItem="fLH-Qv-7Ix" secondAttribute="leading" id="uMm-Ns-bsl"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vbb-Bd-O2k">
-                    <rect key="frame" x="263" y="36" width="96" height="30"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Vbb-Bd-O2k">
+                    <rect key="frame" x="275" y="36" width="84" height="32"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9R-pk-iSJ">
-                            <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
-                            <state key="normal" title="Filters"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9R-pk-iSJ">
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="ge2-hx-1rp"/>
+                                <constraint firstAttribute="width" constant="32" id="jrz-Da-mNq"/>
+                            </constraints>
+                            <state key="normal" image="Refresh"/>
                             <connections>
-                                <action selector="getLocation:" destination="-1" eventType="touchUpInside" id="dWa-8a-tGh"/>
+                                <action selector="refreshLocation:" destination="-1" eventType="touchUpInside" id="dWa-8a-tGh"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuA-uB-mGm">
-                            <rect key="frame" x="54" y="0.0" width="42" height="30"/>
-                            <state key="normal" title="Filters"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuA-uB-mGm">
+                            <rect key="frame" x="52" y="0.0" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="5fL-Rh-P0w"/>
+                                <constraint firstAttribute="width" constant="32" id="vxd-Fq-v8O"/>
+                            </constraints>
+                            <state key="normal" image="Settings"/>
                             <connections>
                                 <action selector="callFilter:" destination="-1" eventType="touchUpInside" id="fFZ-Qu-Qfz"/>
                             </connections>
@@ -75,22 +82,10 @@
                         <outlet property="delegate" destination="-1" id="Lfw-hZ-0xP"/>
                     </connections>
                 </collectionView>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="lastBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="wTe-bn-vyW">
-                    <rect key="frame" x="339" y="415" width="20" height="20"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="0SP-wU-6jO"/>
-                        <constraint firstAttribute="width" priority="250" constant="20" id="NWc-Pq-CSP"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="cPA-lL-kWf"/>
-                        <constraint firstAttribute="height" priority="250" constant="20" id="wgF-yt-E4X"/>
-                    </constraints>
-                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Rtl-oX-Q47" firstAttribute="trailing" secondItem="jB2-9Q-jSS" secondAttribute="trailing" id="6OQ-mW-E1M"/>
-                <constraint firstItem="Rtl-oX-Q47" firstAttribute="top" secondItem="wTe-bn-vyW" secondAttribute="bottom" constant="16" id="E9D-P8-AGh"/>
-                <constraint firstItem="jB2-9Q-jSS" firstAttribute="trailing" secondItem="wTe-bn-vyW" secondAttribute="trailing" constant="16" id="PDW-Mr-4Gn"/>
                 <constraint firstItem="jB2-9Q-jSS" firstAttribute="trailing" secondItem="Vbb-Bd-O2k" secondAttribute="trailing" constant="16" id="QBa-qA-0y4"/>
                 <constraint firstItem="fLH-Qv-7Ix" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SNi-Oz-X2V"/>
                 <constraint firstAttribute="bottom" secondItem="fLH-Qv-7Ix" secondAttribute="bottom" id="Si4-dg-h3T"/>
@@ -104,4 +99,8 @@
             <point key="canvasLocation" x="93.599999999999994" y="179.46026986506749"/>
         </view>
     </objects>
+    <resources>
+        <image name="Refresh" width="64" height="64"/>
+        <image name="Settings" width="32" height="32"/>
+    </resources>
 </document>

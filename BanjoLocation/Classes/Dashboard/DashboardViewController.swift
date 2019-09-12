@@ -13,8 +13,9 @@ import MapKit
 protocol DashboardDisplayLogic: class {
     func updateView()
     func scrollTo(index: Int)
-    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) 
+    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double)
     func navigateTo(viewController: UIViewController)
+    func zoomMap()
 }
 
 public class DashboardViewController: UIViewController, DashboardDisplayLogic {
@@ -26,7 +27,6 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet private weak var locationStackView: UIStackView!
 
 	// MARK: Object lifecycle
 	init() {
@@ -47,8 +47,7 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 	override public func viewDidLoad() {
 		super.viewDidLoad()
         configureCollection()
-        let button = MKUserTrackingButton(mapView: self.mapView)
-        locationStackView.addArrangedSubview(button)
+        loadPosition()
 	}
 
     func configureCollection() {
@@ -61,7 +60,7 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         }
     }
 
-    @IBAction func getLocation(_ sender: Any) {
+    func loadPosition() {
         let status = CLLocationManager.authorizationStatus()
 
         switch status {
@@ -84,8 +83,16 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         mapView.delegate = self
+        mapView.showsCompass = false
         mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
+        mapView.userTrackingMode = .follow
+    }
+
+    @IBAction func refreshLocation(_ sender: Any) {
+        guard let lat = locationManager.location?.coordinate.latitude, let lng = locationManager.location?.coordinate.longitude else {
+            return
+        }
+        self.presenter?.updateLocation(position: (Double(lat), Double(lng)))
     }
 
     @IBAction func callFilter(_ sender: Any) {
@@ -104,6 +111,10 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 
     func scrollTo(index: Int) {
         self.collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+    }
+
+    func zoomMap() {
+        self.mapView.zoomToFitMapAnnotations()
     }
 
     func navigateTo(viewController: UIViewController) {

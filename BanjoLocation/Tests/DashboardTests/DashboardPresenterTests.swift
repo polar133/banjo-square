@@ -120,25 +120,11 @@ class DashboardPresenterTests: XCTestCase {
         XCTAssertFalse(model.getVenuesCalled)
     }
 
-    func testUpdateVenues() {
-        //Given
-
-        //When
-
-        //Then
-    }
-
-    func testPresentError() {
-        //Given
-
-        //When
-
-        //Thenç
-    }
 }
 
 class DashboardViewControllerSpy: DashboardDisplayLogic {
 
+    var zoomMapCalled = false
     var addCustomAnnotationCalled = false
     var scrollToCalled = false
     var navigateToCalled = false
@@ -158,6 +144,10 @@ class DashboardViewControllerSpy: DashboardDisplayLogic {
 
     func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) {
         addCustomAnnotationCalled = true
+    }
+
+    func zoomMap() {
+        zoomMapCalled = true
     }
 }
 

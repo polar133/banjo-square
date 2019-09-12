@@ -68,6 +68,7 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
         for venue in self.model?.venuesAvailables() ?? [] {
             self.view?.addCustomAnnotation(title: venue.name, venue.location.lat, venue.location.lng)
         }
+        self.view?.zoomMap()
     }
 
     func presentError() {

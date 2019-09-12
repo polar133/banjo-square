@@ -13,14 +13,15 @@ typealias Coordinates = (lat: Double, lng: Double)
 public protocol DashboardParametersLogic {
 }
 
-protocol DashboardPresentationLogic {
-    func setFilterFor(position: Coordinates, radius: Int, section: String?)
+protocol DashboardPresentationLogic: class {
+    func setFilterFor(radius: Int, section: String?)
     func updateLocation(position: Coordinates)
     func getAmountOfVenues() -> Int
     func getViewModelFor(index: Int) -> VenueViewModel?
     func presentVenueDetail(index: Int)
     func presentVenueDetail(title: String)
-    func annotationSelected(title: String) 
+    func annotationSelected(title: String)
+    func getRadius() -> Int
 }
 
 protocol DashboardPresentationModelLogic: class {
@@ -43,12 +44,15 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
         }
     }
 
-    func setFilterFor(position: Coordinates, radius: Int, section: String?) {
-        self.position = position
+    func getRadius() -> Int {
+        return self.radius
+    }
+
+    func setFilterFor(radius: Int, section: String?) {
         if radius != self.radius || section != self.section {
             self.radius = radius
             self.section = section
-            self.model?.getVenues(lat: self.position.lat, lng: self.position.lng, radius: self.radius, section: self.section, clearVenues: self.farAway)
+            self.model?.getVenues(lat: self.position.lat, lng: self.position.lng, radius: self.radius, section: self.section, clearVenues: false)
         }
     }
 

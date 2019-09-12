@@ -40,13 +40,20 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vbb-Bd-O2k">
-                    <rect key="frame" x="317" y="36" width="42" height="30"/>
+                    <rect key="frame" x="263" y="36" width="96" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9R-pk-iSJ">
                             <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
                             <state key="normal" title="Filters"/>
                             <connections>
                                 <action selector="getLocation:" destination="-1" eventType="touchUpInside" id="dWa-8a-tGh"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuA-uB-mGm">
+                            <rect key="frame" x="54" y="0.0" width="42" height="30"/>
+                            <state key="normal" title="Filters"/>
+                            <connections>
+                                <action selector="callFilter:" destination="-1" eventType="touchUpInside" id="fFZ-Qu-Qfz"/>
                             </connections>
                         </button>
                     </subviews>

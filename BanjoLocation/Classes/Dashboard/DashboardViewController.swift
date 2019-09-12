@@ -88,6 +88,13 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         mapView.userTrackingMode = .followWithHeading
     }
 
+    @IBAction func callFilter(_ sender: Any) {
+        let vc = FilterViewController()
+        vc.presenter = self.presenter
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+    }
+
     func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) {
         let annotation = MKPointAnnotation()
         annotation.title = title.capitalized

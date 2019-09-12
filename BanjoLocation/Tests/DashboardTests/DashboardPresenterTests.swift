@@ -29,12 +29,12 @@ class DashboardPresenterTests: XCTestCase {
         presenter.model = model
 
         //When
-        presenter.setFilterFor(position: (100.0, 200.0), radius: 1000, section: "TEST")
+        presenter.setFilterFor(radius: 1000, section: "TEST")
 
         //Then
         XCTAssertEqual(presenter.radius, 1000)
-        XCTAssertEqual(presenter.position.lat, 100.0)
-        XCTAssertEqual(presenter.position.lng, 200.0)
+        XCTAssertEqual(presenter.position.lat, 1.0)
+        XCTAssertEqual(presenter.position.lng, 1.0)
         XCTAssertEqual(presenter.section, "TEST")
         XCTAssertTrue(model.getVenuesCalled)
     }
@@ -47,11 +47,11 @@ class DashboardPresenterTests: XCTestCase {
         presenter.section = "Picks"
 
         //When
-        presenter.setFilterFor(position: (100.0, 200.0), radius: 250, section: "TEST")
+        presenter.setFilterFor(radius: 250, section: "TEST")
 
         //Then
-        XCTAssertEqual(presenter.position.lat, 100.0)
-        XCTAssertEqual(presenter.position.lng, 200.0)
+        XCTAssertEqual(presenter.position.lat, 1.0)
+        XCTAssertEqual(presenter.position.lng, 1.0)
         XCTAssertEqual(presenter.radius, 250)
         XCTAssertEqual(presenter.section, "TEST")
         XCTAssertTrue(presenter.farAway)
@@ -67,11 +67,11 @@ class DashboardPresenterTests: XCTestCase {
         presenter.model = model
 
         //When
-        presenter.setFilterFor(position: (100.0, 200.0), radius: 250, section: nil)
+        presenter.setFilterFor(radius: 250, section: nil)
 
         //Then
-        XCTAssertEqual(presenter.position.lat, 100.0)
-        XCTAssertEqual(presenter.position.lng, 200.0)
+        XCTAssertEqual(presenter.position.lat, 1.0)
+        XCTAssertEqual(presenter.position.lng, 1.0)
         XCTAssertEqual(presenter.radius, 250)
         XCTAssertNil(presenter.section)
         XCTAssertFalse(model.getVenuesCalled)
@@ -139,6 +139,8 @@ class DashboardPresenterTests: XCTestCase {
 
 class DashboardViewControllerSpy: DashboardDisplayLogic {
 
+    var addCustomAnnotationCalled = false
+    var scrollToCalled = false
     var navigateToCalled = false
     var updateViewCalled = false
     
@@ -148,6 +150,14 @@ class DashboardViewControllerSpy: DashboardDisplayLogic {
 
     func navigateTo(viewController: UIViewController) {
         navigateToCalled = true
+    }
+
+    func scrollTo(index: Int) {
+        scrollToCalled = true
+    }
+
+    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) {
+        addCustomAnnotationCalled = true
     }
 }
 

@@ -13,12 +13,15 @@ typealias Coordinates = (lat: Double, lng: Double)
 public protocol DashboardParametersLogic {
 }
 
-protocol DashboardPresentationLogic {
-    func setFilterFor(position: Coordinates, radius: Int, section: String?)
+protocol DashboardPresentationLogic: class {
+    func setFilterFor(radius: Int, section: String?)
     func updateLocation(position: Coordinates)
     func getAmountOfVenues() -> Int
     func getViewModelFor(index: Int) -> VenueViewModel?
     func presentVenueDetail(index: Int)
+    func presentVenueDetail(title: String)
+    func annotationSelected(title: String)
+    func getRadius() -> Int
 }
 
 protocol DashboardPresentationModelLogic: class {
@@ -41,12 +44,15 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
         }
     }
 
-    func setFilterFor(position: Coordinates, radius: Int, section: String?) {
-        self.position = position
+    func getRadius() -> Int {
+        return self.radius
+    }
+
+    func setFilterFor(radius: Int, section: String?) {
         if radius != self.radius || section != self.section {
             self.radius = radius
             self.section = section
-            self.model?.getVenues(lat: self.position.lat, lng: self.position.lng, radius: self.radius, section: self.section, clearVenues: self.farAway)
+            self.model?.getVenues(lat: self.position.lat, lng: self.position.lng, radius: self.radius, section: self.section, clearVenues: true)
         }
     }
 
@@ -59,10 +65,37 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
 
     func updateVenues() {
         self.view?.updateView()
+        for venue in self.model?.venuesAvailables() ?? [] {
+            self.view?.addCustomAnnotation(title: venue.name, venue.location.lat, venue.location.lng)
+        }
+        self.view?.zoomMap()
     }
 
     func presentError() {
+        self.view?.showError()
+    }
 
+    func annotationSelected(title: String) {
+        let elements = Array(self.model?.venuesAvailables() ?? [])
+        for index in 0..<elements.count {
+            if elements[index].name.uppercased() == title.uppercased() {
+                self.view?.scrollTo(index: index)
+                break
+            }
+        }
+    }
+
+    func presentVenueDetail(title: String) {
+        let elements = Array(self.model?.venuesAvailables() ?? [])
+        for index in 0..<elements.count {
+            if elements[index].name.uppercased() == title.uppercased() {
+                let vc = VenueDetailFactory().getVenueDetailViewController()
+                let venue = elements[index]
+                vc.params?.setVenueParams(id: venue.id, name: venue.name, location: venue.location.address ?? "")
+                self.view?.navigateTo(viewController: vc)
+                break
+            }
+        }
     }
 
     func presentVenueDetail(index: Int) {
@@ -82,7 +115,16 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
             return nil
         }
         let venue = elements[index]
-        let viewModel = VenueViewModel(title: venue.name, location: venue.location.address ?? "", firstCategory: nil, secondCategory: nil)
+        var viewModel = VenueViewModel(title: venue.name, location: venue.location.address ?? "", firstCategory: nil, secondCategory: nil)
+        if let category = venue.categories.first {
+            let categoryVM = CategoryViewModel(title: category.shortName, url: category.getIconURL())
+            viewModel.firstCategory = categoryVM
+        }
+        if venue.categories.count > 1 {
+            let category = venue.categories[1]
+            let categoryVM = CategoryViewModel(title: category.shortName, url: category.getIconURL())
+            viewModel.secondCategory = categoryVM
+        }
         return viewModel
     }
 

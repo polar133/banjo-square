@@ -12,7 +12,11 @@ import MapKit
 
 protocol DashboardDisplayLogic: class {
     func updateView()
+    func scrollTo(index: Int)
+    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double)
     func navigateTo(viewController: UIViewController)
+    func zoomMap()
+    func showError()
 }
 
 public class DashboardViewController: UIViewController, DashboardDisplayLogic {
@@ -24,7 +28,6 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet private weak var locationStackView: UIStackView!
 
 	// MARK: Object lifecycle
 	init() {
@@ -45,8 +48,7 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 	override public func viewDidLoad() {
 		super.viewDidLoad()
         configureCollection()
-        let button = MKUserTrackingButton(mapView: self.mapView)
-        locationStackView.addArrangedSubview(button)
+        loadPosition()
 	}
 
     func configureCollection() {
@@ -54,12 +56,20 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     }
 
     func updateView() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        DispatchQueue.main.sync { [weak self] in
+            self?.mapView.removeAnnotations(self?.mapView.annotations.filter { $0 is MKPointAnnotation } ?? [])
+            self?.collectionView.reloadData()
         }
     }
 
-    @IBAction func getLocation(_ sender: Any) {
+    func showError() {
+        DispatchQueue.main.sync { [weak self] in
+            let alert = UIAlertController(title: "Oops! There was an error 👎", message: "Maybe internet, maybe tokens, maybe stuffs! 🤷‍♂️", preferredStyle: .alert)
+            self?.present(alert, animated: true)
+        }
+    }
+
+    func loadPosition() {
         let status = CLLocationManager.authorizationStatus()
 
         switch status {
@@ -81,8 +91,41 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         }
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        mapView.delegate = self
+        mapView.showsCompass = false
         mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
+        mapView.userTrackingMode = .follow
+    }
+
+    @IBAction func refreshLocation(_ sender: Any) {
+        guard let lat = locationManager.location?.coordinate.latitude, let lng = locationManager.location?.coordinate.longitude else {
+            return
+        }
+        self.presenter?.updateLocation(position: (Double(lat), Double(lng)))
+    }
+
+    @IBAction func callFilter(_ sender: Any) {
+        let vc = FilterViewController()
+        vc.presenter = self.presenter
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+    }
+
+    func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double) {
+        let annotation = MKPointAnnotation()
+        annotation.title = title.capitalized
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        mapView.addAnnotation(annotation)
+    }
+
+    func scrollTo(index: Int) {
+        self.collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+    }
+
+    func zoomMap() {
+        DispatchQueue.main.sync { [weak self] in
+            self?.mapView.zoomToFitMapAnnotations()
+        }
     }
 
     func navigateTo(viewController: UIViewController) {
@@ -90,7 +133,7 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     }
 }
 
-extension DashboardViewController: CLLocationManagerDelegate {
+extension DashboardViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.last {
             self.presenter?.updateLocation(position: (Double(currentLocation.coordinate.latitude),
@@ -99,11 +142,41 @@ extension DashboardViewController: CLLocationManagerDelegate {
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.bounds.width * 5) / 6, height: 160)
+        return CGSize(width: (collectionView.bounds.width * 5) / 6, height: 180)
     }
 
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         debugPrint(error)
+    }
+    public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else {
+            return nil
+        }
+
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            annotationView?.calloutOffset = CGPoint(x: -5, y: 5)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+
+        return annotationView
+    }
+
+    public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotationTitle = view.annotation?.title {
+            self.presenter?.annotationSelected(title: annotationTitle ?? "")
+        }
+    }
+
+    public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotationTitle = view.annotation?.title {
+            self.presenter?.presentVenueDetail(title: annotationTitle ?? "")
+        }
     }
 }
 

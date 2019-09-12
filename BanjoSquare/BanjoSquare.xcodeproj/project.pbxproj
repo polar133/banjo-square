@@ -157,6 +157,7 @@
 				96D5AEC123285F10003B5314 /* Resources */,
 				96D5AEE623286140003B5314 /* Swiftlint */,
 				AD1FA1419CC0E8CD115964A2 /* [CP] Copy Pods Resources */,
+				60DE299C32CFFE17EF5A7B32 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,6 +246,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		60DE299C32CFFE17EF5A7B32 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BanjoSquare/Pods-BanjoSquare-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8423F7F194E0E4518C9EFDA7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

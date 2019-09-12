@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol VenueDetailDisplayLogic: class {
     func configureContent(viewModel: VenueDetailViewModel)
+    func showErrorView()
 }
 
 public class VenueDetailViewController: UIViewController, VenueDetailDisplayLogic {
@@ -18,10 +20,22 @@ public class VenueDetailViewController: UIViewController, VenueDetailDisplayLogi
 
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var contentStackView: UIView!
     @IBOutlet private weak var photoImage: UIImageView!
+
+    @IBOutlet private weak var errorView: UIView!
 
     //Content
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var locationLabel: UILabel!
+    @IBOutlet private weak var ratingLabel: UILabel!
+    @IBOutlet private weak var likesLabel: UILabel!
+
+    @IBOutlet private weak var phoneView: UIView!
+    @IBOutlet private weak var phoneLabel: UILabel!
+
+    @IBOutlet private weak var webpageView: UIView!
+    @IBOutlet private weak var webpageLabel: UILabel!
 
 	// MARK: Object lifecycle
 	init() {
@@ -47,16 +61,46 @@ public class VenueDetailViewController: UIViewController, VenueDetailDisplayLogi
 
     func configureView() {
         contentView.layer.cornerRadius = 12
-
+        let origImage = UIImage(named: "Back")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        backButton.setImage(tintedImage, for: .normal)
+        backButton.tintColor = .white
     }
 
     @IBAction func goBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
+    func showErrorView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorView.isHidden = false
+        }
+    }
+
     func configureContent(viewModel: VenueDetailViewModel) {
-        DispatchQueue.main.sync { [weak self] in
-            self?.titleLabel.text = viewModel.name
+
+        DispatchQueue.main.async { [weak self] in
+            self?.titleLabel.text = viewModel.name.capitalized
+            self?.locationLabel.text = (viewModel.location ?? "").capitalized
+
+            if let photoURL = viewModel.imageURL, !photoURL.isEmpty, let url = URL(string: photoURL) {
+                self?.photoImage.sd_setImage(with: url, completed: nil)
+            }
+
+            self?.ratingLabel.text = viewModel.rating
+            self?.likesLabel.text = "\(viewModel.likes ?? "0") Likes"
+
+            if let phone = viewModel.phoneNumber {
+                self?.phoneLabel.text = phone
+            } else {
+                self?.phoneView.isHidden = true
+            }
+
+            if let url = viewModel.url {
+                self?.webpageLabel.text = url
+            } else {
+                self?.webpageView.isHidden = true
+            }
         }
     }
 

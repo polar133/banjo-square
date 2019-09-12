@@ -32,6 +32,7 @@ class VenueDetailModel: VenueDetailModelLogic, VenueDetailDataStore {
     func fetchVenueDetail() {
         service?.fetchVenue(id: self.id, callback: { [weak self] response in
             guard let response = response else {
+                self?.presenter?.showError()
                 return
             }
             self?.venue = response.response.venue

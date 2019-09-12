@@ -57,7 +57,7 @@ struct Category: Decodable, Hashable {
     let icon: Icon
 
     func getIconURL() -> String {
-        return "\(icon.prefix)\(icon.suffix)"
+        return "\(icon.prefix)100\(icon.suffix)"
     }
 
     static func == (lhs: Category, rhs: Category) -> Bool {

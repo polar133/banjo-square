@@ -52,9 +52,9 @@ class VenueDetailModelTests: XCTestCase {
     func testGetVenueDetail() {
         //Given
         let model = VenueDetailModel()
-        let venuePreLoaded = VenueDetail(id: "123", name: "TEST", contact: nil, url: nil, price: nil, likes: nil, rating: nil, ratingColor: nil, photos: nil)
+        let venuePreLoaded = VenueDetail(id: "123", name: "TEST", contact: nil, url: nil, price: nil, likes: nil, rating: nil, ratingColor: nil, photos: nil, bestPhoto: nil)
         model.venue = venuePreLoaded
-        
+
         //When
         let venue = model.getVenueDetail()
 

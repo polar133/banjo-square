@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class VenueCell: UICollectionViewCell {
 
@@ -40,13 +41,26 @@ class VenueCell: UICollectionViewCell {
         self.cardView.layer.shadowOpacity = 0.4
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        firstCatIconImage.sd_cancelCurrentImageLoad()
+        secCatIconImage.sd_cancelCurrentImageLoad()
+        firstCatIconImage.image = nil
+        secCatIconImage.image = nil
+    }
+
     func setupInformation(viewModel: VenueViewModel) {
         self.titleLabel.text = viewModel.title.capitalized
         self.locationLabel.text = viewModel.location.capitalized
+        self.firstCatIconImage.layer.cornerRadius = 5
+        self.secCatIconImage.layer.cornerRadius = 5
 
         if let category = viewModel.firstCategory {
             firstCatView.isHidden = false
             firstCatNameLabel.text = category.title
+            if firstCatIconImage.image == nil, let url = URL(string: category.url) {
+                self.firstCatIconImage.sd_setImage(with: url)
+            }
         } else {
             firstCatView.isHidden = true
         }
@@ -54,6 +68,9 @@ class VenueCell: UICollectionViewCell {
         if let category = viewModel.secondCategory {
             secCatView.isHidden = false
             secCatNameLabel.text = category.title
+            if secCatIconImage.image == nil, let url = URL(string: category.url) {
+                self.secCatIconImage.sd_setImage(with: url)
+            }
         } else {
             secCatView.isHidden = true
         }

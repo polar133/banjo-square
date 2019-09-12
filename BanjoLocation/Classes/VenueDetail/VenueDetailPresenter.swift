@@ -17,6 +17,7 @@ protocol VenueDetailPresentationLogic {
 }
 
 protocol VenueDetailPresentationModelLogic: class {
+    func showError()
     func presentVenue()
 }
 
@@ -39,10 +40,10 @@ class VenueDetailPresenter: VenueDetailPresentationLogic, VenueDetailPresentatio
         guard let venueDetailModel = self.model?.getVenueDetail() else {
             return
         }
-
+        let photoURL = venueDetailModel.bestPhoto?.getPhoto() ?? venueDetailModel.photos?.getPhotos().randomElement()
         let venueDetail = VenueDetailViewModel(name: venueDetailModel.name,
                                                location: self.model?.location,
-                                               imageURL: "",
+                                               imageURL: photoURL,
                                                phoneNumber: venueDetailModel.contact?.formattedPhone,
                                                url: venueDetailModel.url,
                                                price: venueDetailModel.price?.message,
@@ -51,5 +52,9 @@ class VenueDetailPresenter: VenueDetailPresentationLogic, VenueDetailPresentatio
                                                ratingColor: venueDetailModel.ratingColor,
                                                photos: venueDetailModel.photos?.getPhotos())
         self.view?.configureContent(viewModel: venueDetail)
+    }
+
+    func showError() {
+        self.view?.showErrorView()
     }
 }

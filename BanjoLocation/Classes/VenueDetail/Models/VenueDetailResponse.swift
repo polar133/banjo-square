@@ -25,6 +25,7 @@ struct VenueDetail: Decodable {
     let rating: Double?
     let ratingColor: String?
     let photos: Photos?
+    let bestPhoto: Photo?
 }
 
 struct Contact: Decodable {
@@ -44,7 +45,7 @@ struct Photos: Decodable {
     let groups: [PhotoGroup]
 
     func getPhotos() -> [String] {
-        return self.groups.compactMap { $0.items.compactMap { "\($0.prefix)\($0.suffix)" } }.reduce([], +)
+        return self.groups.compactMap { $0.items.compactMap { "\($0.prefix)500x300\($0.suffix)" } }.reduce([], +)
     }
 }
 
@@ -56,4 +57,8 @@ struct Photo: Decodable {
     let id: String
     let prefix: String
     let suffix: String
+
+    func getPhoto() -> String {
+        return "\(self.prefix)500x300\(self.suffix)"
+    }
 }

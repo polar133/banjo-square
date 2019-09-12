@@ -72,7 +72,9 @@ public class VenueDetailViewController: UIViewController, VenueDetailDisplayLogi
     }
 
     func showErrorView() {
-        errorView.isHidden = false
+        DispatchQueue.main.async { [weak self] in
+            self?.errorView.isHidden = false
+        }
     }
 
     func configureContent(viewModel: VenueDetailViewModel) {

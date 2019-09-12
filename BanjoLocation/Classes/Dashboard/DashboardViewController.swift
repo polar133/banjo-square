@@ -16,6 +16,7 @@ protocol DashboardDisplayLogic: class {
     func addCustomAnnotation(title: String, _ latitude: Double, _ longitude: Double)
     func navigateTo(viewController: UIViewController)
     func zoomMap()
+    func showError()
 }
 
 public class DashboardViewController: UIViewController, DashboardDisplayLogic {
@@ -58,6 +59,13 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         DispatchQueue.main.sync { [weak self] in
             self?.mapView.removeAnnotations(self?.mapView.annotations.filter { $0 is MKPointAnnotation } ?? [])
             self?.collectionView.reloadData()
+        }
+    }
+
+    func showError() {
+        DispatchQueue.main.sync { [weak self] in
+            let alert = UIAlertController(title: "Oops! There was an error 👎", message: "Maybe internet, maybe tokens, maybe stuffs! 🤷‍♂️", preferredStyle: .alert)
+            self?.present(alert, animated: true)
         }
     }
 

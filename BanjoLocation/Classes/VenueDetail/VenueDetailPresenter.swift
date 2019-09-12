@@ -17,6 +17,7 @@ protocol VenueDetailPresentationLogic {
 }
 
 protocol VenueDetailPresentationModelLogic: class {
+    func showError()
     func presentVenue()
 }
 
@@ -51,5 +52,9 @@ class VenueDetailPresenter: VenueDetailPresentationLogic, VenueDetailPresentatio
                                                ratingColor: venueDetailModel.ratingColor,
                                                photos: venueDetailModel.photos?.getPhotos())
         self.view?.configureContent(viewModel: venueDetail)
+    }
+
+    func showError() {
+        self.view?.showErrorView()
     }
 }

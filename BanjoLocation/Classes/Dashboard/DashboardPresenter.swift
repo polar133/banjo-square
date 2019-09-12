@@ -72,7 +72,7 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
     }
 
     func presentError() {
-
+        self.view?.showError()
     }
 
     func annotationSelected(title: String) {

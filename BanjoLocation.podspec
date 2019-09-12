@@ -27,7 +27,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'git@github.com:polar133/banjo-square.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/carlos_polar'
 
-  s.static_framework = true # <- Google Maps
   s.swift_version = '5.0'
   s.ios.deployment_target = '12.0'
 

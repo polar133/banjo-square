@@ -56,6 +56,7 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
 
     func updateView() {
         DispatchQueue.main.sync { [weak self] in
+            self?.mapView.removeAnnotations(self?.mapView.annotations.filter { $0 is MKPointAnnotation } ?? [])
             self?.collectionView.reloadData()
         }
     }
@@ -114,7 +115,9 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
     }
 
     func zoomMap() {
-        self.mapView.zoomToFitMapAnnotations()
+        DispatchQueue.main.sync { [weak self] in
+            self?.mapView.zoomToFitMapAnnotations()
+        }
     }
 
     func navigateTo(viewController: UIViewController) {

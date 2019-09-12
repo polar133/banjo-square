@@ -52,7 +52,7 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
         if radius != self.radius || section != self.section {
             self.radius = radius
             self.section = section
-            self.model?.getVenues(lat: self.position.lat, lng: self.position.lng, radius: self.radius, section: self.section, clearVenues: false)
+            self.model?.getVenues(lat: self.position.lat, lng: self.position.lng, radius: self.radius, section: self.section, clearVenues: true)
         }
     }
 
@@ -78,7 +78,7 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
     func annotationSelected(title: String) {
         let elements = Array(self.model?.venuesAvailables() ?? [])
         for index in 0..<elements.count {
-            if elements[index].name == title {
+            if elements[index].name.uppercased() == title.uppercased() {
                 self.view?.scrollTo(index: index)
                 break
             }
@@ -88,7 +88,7 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
     func presentVenueDetail(title: String) {
         let elements = Array(self.model?.venuesAvailables() ?? [])
         for index in 0..<elements.count {
-            if elements[index].name == title {
+            if elements[index].name.uppercased() == title.uppercased() {
                 let vc = VenueDetailFactory().getVenueDetailViewController()
                 let venue = elements[index]
                 vc.params?.setVenueParams(id: venue.id, name: venue.name, location: venue.location.address ?? "")

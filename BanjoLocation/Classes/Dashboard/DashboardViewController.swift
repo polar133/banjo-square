@@ -12,6 +12,7 @@ import MapKit
 
 protocol DashboardDisplayLogic: class {
     func updateView()
+    func navigateTo(viewController: UIViewController)
 }
 
 public class DashboardViewController: UIViewController, DashboardDisplayLogic {
@@ -83,6 +84,10 @@ public class DashboardViewController: UIViewController, DashboardDisplayLogic {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .followWithHeading
     }
+
+    func navigateTo(viewController: UIViewController) {
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
 
 extension DashboardViewController: CLLocationManagerDelegate {
@@ -105,6 +110,10 @@ extension DashboardViewController: CLLocationManagerDelegate {
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.presenter?.getAmountOfVenues() ?? 0
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter?.presentVenueDetail(index: indexPath.row)
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

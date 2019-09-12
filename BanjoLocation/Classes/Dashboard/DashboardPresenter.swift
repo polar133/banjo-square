@@ -18,6 +18,7 @@ protocol DashboardPresentationLogic {
     func updateLocation(position: Coordinates)
     func getAmountOfVenues() -> Int
     func getViewModelFor(index: Int) -> VenueViewModel?
+    func presentVenueDetail(index: Int)
 }
 
 protocol DashboardPresentationModelLogic: class {
@@ -62,6 +63,17 @@ class DashboardPresenter: DashboardPresentationLogic, DashboardPresentationModel
 
     func presentError() {
 
+    }
+
+    func presentVenueDetail(index: Int) {
+        let elements = Array(self.model?.venuesAvailables() ?? [])
+        guard elements.count > index else {
+            return
+        }
+        let vc = VenueDetailFactory().getVenueDetailViewController()
+        let venue = elements[index]
+        vc.params?.setVenueParams(id: venue.id, name: venue.name, location: venue.location.address ?? "")
+        self.view?.navigateTo(viewController: vc)
     }
 
     func getViewModelFor(index: Int) -> VenueViewModel? {

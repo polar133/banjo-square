@@ -138,13 +138,17 @@ class DashboardPresenterTests: XCTestCase {
 }
 
 class DashboardViewControllerSpy: DashboardDisplayLogic {
+
+    var navigateToCalled = false
     var updateViewCalled = false
     
     func updateView() {
         updateViewCalled = true
     }
 
-
+    func navigateTo(viewController: UIViewController) {
+        navigateToCalled = true
+    }
 }
 
 class DashboardModelSpy: DashboardModelLogic, DashboardDataStore {

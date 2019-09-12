@@ -124,6 +124,7 @@ class DashboardPresenterTests: XCTestCase {
 
 class DashboardViewControllerSpy: DashboardDisplayLogic {
 
+    var showErrorCalled = false
     var zoomMapCalled = false
     var addCustomAnnotationCalled = false
     var scrollToCalled = false
@@ -148,6 +149,10 @@ class DashboardViewControllerSpy: DashboardDisplayLogic {
 
     func zoomMap() {
         zoomMapCalled = true
+    }
+
+    func showError() {
+        showErrorCalled = true
     }
 }
 

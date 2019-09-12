@@ -9,17 +9,47 @@
 import Foundation
 
 public protocol VenueDetailParametersLogic {
-	//Here goes the func that receive data as params if needed to be saved in DataStore.
+    func setVenueParams(id: String, name: String, location: String)
 }
 
 protocol VenueDetailPresentationLogic {
+    func getVenue()
 }
 
 protocol VenueDetailPresentationModelLogic: class {
+    func presentVenue()
 }
 
 class VenueDetailPresenter: VenueDetailPresentationLogic, VenueDetailPresentationModelLogic, VenueDetailParametersLogic {
 
 	weak var view: VenueDetailDisplayLogic?
 	var model: (VenueDetailModelLogic & VenueDetailDataStore)?
+
+    func setVenueParams(id: String, name: String, location: String) {
+        self.model?.id = id
+        self.model?.name = name
+        self.model?.location = location
+    }
+
+    func getVenue() {
+        self.model?.fetchVenueDetail()
+    }
+
+    func presentVenue() {
+        guard let venueDetailModel = self.model?.getVenueDetail() else {
+            return
+        }
+
+        let venueDetail = VenueDetailViewModel(name: venueDetailModel.name,
+                                               location: self.model?.location,
+                                               imageURL: "",
+                                               phoneNumber: venueDetailModel.contact?.formattedPhone,
+                                               url: venueDetailModel.url,
+                                               price: venueDetailModel.price?.message,
+                                               likes: "\(venueDetailModel.likes?.count ?? 0)",
+                                               rating: "\(venueDetailModel.rating ?? 0)",
+                                               ratingColor: venueDetailModel.ratingColor,
+                                               photos: venueDetailModel.photos?.getPhotos())
+        self.view?.configureContent(viewModel: venueDetail)
+    }
 }

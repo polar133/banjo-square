@@ -28,7 +28,8 @@ struct VenueDetail: Decodable {
 }
 
 struct Contact: Decodable {
-    let formattedPhone: String
+    let phone: String?
+    let formattedPhone: String?
 }
 
 struct Price: Decodable {
@@ -41,6 +42,10 @@ struct Like: Decodable {
 
 struct Photos: Decodable {
     let groups: [PhotoGroup]
+
+    func getPhotos() -> [String] {
+        return self.groups.compactMap { $0.items.compactMap { "\($0.prefix)\($0.suffix)" } }.reduce([], +)
+    }
 }
 
 struct PhotoGroup: Decodable {
